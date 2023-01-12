@@ -93,7 +93,7 @@ export class Header extends HTMLElement{
                 }
             `
             header.innerHTML= `
-                <img src=${patitas}/ class="img__icon">
+                <img src=${patitas} class="img__icon"/>
                 <img src=${hambur} class="menu"/>
                 <div class="menu__options">
                     <div class="menu__options_close">

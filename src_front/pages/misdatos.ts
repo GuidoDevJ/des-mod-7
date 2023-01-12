@@ -2,28 +2,29 @@
 import "../components/header";
 import "../components/button";
 import { state } from "../state";
+import Swal from "sweetalert2";
+import { Router } from "@vaadin/router";
 
-
-let email:string;
-let name:string;
+let email: string;
+let name: string;
 
 // Clase Mis datos
-export class MisDatos extends HTMLElement{
-    constructor(){
-        super()
-    }
-    connectedCallback(){
-        this.render()
-    }
-    render(){
-        // Variables locales
-        const cs = state.getUserData()
-        let dataLocalStorage = JSON.parse(localStorage.getItem("dataUser")) 
-         email = cs.email || dataLocalStorage.email
-         name = cs.name || dataLocalStorage.name
-        this.classList.add("container")
-        let style = document.createElement("style")
-        style.innerHTML = `
+export class MisDatos extends HTMLElement {
+  constructor() {
+    super();
+  }
+  connectedCallback() {
+    this.render();
+  }
+  render() {
+    // Variables locales
+    const cs = state.getUserData();
+    let dataLocalStorage = JSON.parse(localStorage.getItem("dataUser"));
+    email = cs.email || dataLocalStorage.email;
+    name = cs.name || dataLocalStorage.name;
+    this.classList.add("container");
+    let style = document.createElement("style");
+    style.innerHTML = `
             .container{
                 position:relative;
             }
@@ -67,8 +68,8 @@ export class MisDatos extends HTMLElement{
                 }
         
               }
-        `
-        this.innerHTML=`
+        `;
+    this.innerHTML = `
             <header-custom email="${email}"></header-custom>
             <div class="container-body">
                 <h1>Mis datos</h1>
@@ -91,27 +92,37 @@ export class MisDatos extends HTMLElement{
                 </form>
             </div>
 
-            `
-            // Funciones y variables del custom element
-            const $btn = this.querySelector(".btn")
-            let $name = this.querySelector(".name") as any
-            let $pass1 = this.querySelector(".pass1") as any
-            let $pass2 = this.querySelector(".pass2") as any
-            $btn.addEventListener("click",async(e)=>{
-                const userRes = await state.updateDataUser( {name : $name.value})
-                console.log(userRes)
-                if($pass1.value === $pass2.value){
-                    const resPass = await state.updatePassword({password:$pass1})
-                    console.log(resPass)
-                }else{
-                    console.log("Las contraseñas no son iguales")
-                }
-            })
+            `;
+    // Funciones y variables del custom element
+    const $btn = this.querySelector(".btn");
+    let $name = this.querySelector(".name") as any;
+    let $pass1 = this.querySelector(".pass1") as any;
+    let $pass2 = this.querySelector(".pass2") as any;
+    $btn.addEventListener("click", async (e) => {
+      const userRes = await state.updateDataUser({ name: $name.value });
+      if ($pass1 !== "" && $pass2 !== "") {
+        if ($pass1.value === $pass2.value) {
+          const resPass = await state.updatePassword({ password: $pass1 });
+          Swal.fire({
+            icon: "success",
+            text: "Perfecto",
+            html: "Los datos han sido modificados",
+          });
+          Router.go("/home");
+        } else {
+          console.log("Las contraseñas no son iguales");
+        }
+      }
+      Swal.fire({
+        icon: "success",
+        text: "Perfecto",
+        html: "Los datos han sido modificados",
+      });
+      Router.go("/home");
+    });
 
-
-        this.appendChild(style)
-
-    }
+    this.appendChild(style);
+  }
 }
 
-customElements.define("datos-page",MisDatos)
+customElements.define("datos-page", MisDatos);
