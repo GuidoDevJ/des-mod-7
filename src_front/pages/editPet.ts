@@ -280,7 +280,6 @@ export class EditPet extends HTMLElement {
         `;
     let name = this.querySelector(".name") as any;
     let $btnSave = this.querySelector(".save");
-    let dropzone = this.querySelector(".dropzone");
     let linkDespu = this.querySelector(".despublicar")
     let $btnFound = this.querySelector(".found")
 
@@ -290,7 +289,6 @@ export class EditPet extends HTMLElement {
     });
 // Boton encontrado
     $btnFound.addEventListener("click",e=>{
-      console.log("Hola")
       Swal.fire({
         icon:"success",
         html:`${petName} ha sido notificado como encontrado`
@@ -299,7 +297,13 @@ export class EditPet extends HTMLElement {
     })
 // Boton despublicar
     linkDespu.addEventListener("click",async e=>{
+
       e.preventDefault()
+      Swal.fire({
+        icon:"success",
+        title:"Cuidado los datos se estan eliminando",  
+        html:`Los datos de ${petName} estan siendo eliminados ...`,
+    })
       let res = await state.deletePet()
       if(res){
         localStorage.removeItem("dataPet")
@@ -312,7 +316,6 @@ export class EditPet extends HTMLElement {
         icon:"warning",
         title:"Cuidado los datos se estan modificando",  
         html:`Los datos de ${petName} estan siendo modificados ...`,
-        timer:1000
     })
       csPet.petName = name.value;
       lastCoordinate = coordinatesArray[coordinatesArray.length - 1];
