@@ -240,7 +240,7 @@ export class Report extends HTMLElement {
                 <div class="map-container"></div>
             <div class="buttons">
                 <btn-custom text="Reportar como perdido" color="#FF9DF5" class="save"></btn-custom>
-                <btn-custom text="Cancelar" color="#CDCDCD"></btn-custom>
+                <btn-custom text="Cancelar" color="#CDCDCD" class="cancelar"></btn-custom>
             </div>
             </div>
             
@@ -249,6 +249,7 @@ export class Report extends HTMLElement {
         // Variables de la pagina renderizada
     let name = this.querySelector(".name") as any;
     let $btnSave = this.querySelector(".save");
+    let $btnCancelar = this.querySelector(".cancelar")
     $btnSave.addEventListener("click", async (e) => {
       if (URLuri) {
         csPet.petName = name.value;
@@ -292,6 +293,9 @@ export class Report extends HTMLElement {
         console.log("Lo siento algo fallo en la carga de datos");
       }
     });
+    $btnCancelar.addEventListener("click",e=>{
+      Router.go("/home")
+    })
     this.appendChild(style);
   }
 }
