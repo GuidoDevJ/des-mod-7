@@ -186,7 +186,7 @@ export class Report extends HTMLElement {
         align-items:center;
         height:150px;
       }
-    
+
       .dz-details {
         padding: 0 !important;
       }
@@ -251,6 +251,11 @@ export class Report extends HTMLElement {
     let $btnSave = this.querySelector(".save");
     let $btnCancelar = this.querySelector(".cancelar")
     $btnSave.addEventListener("click", async (e) => {
+      Swal.fire({
+        icon:"warning",
+        title:"Cuidado los datos se estan almacenando, puede tardar unos segundos",  
+        html:`Los datos se estan guardando, agradecemos su paciencia...`,
+    })
       if (URLuri) {
         csPet.petName = name.value;
         lastCoordinate = coordinatesArray[coordinatesArray.length - 1];
@@ -292,7 +297,7 @@ export class Report extends HTMLElement {
       } else {
         console.log("Lo siento algo fallo en la carga de datos");
       }
-    });
+    },{once:true});
     $btnCancelar.addEventListener("click",e=>{
       Router.go("/home")
     })

@@ -207,13 +207,6 @@ export class EditPet extends HTMLElement {
         align-items:center;
         height:150px;
       }
-      .save{
-        transition:all ease 100ms;
-      }
-      .save, .save:active{
-        transform:translateY(6px);
-        box-shadow: 0px 0px 0px rgb(20,52,90);
-      }
       .despublicar{
         font-size:16px;
         color:red;
