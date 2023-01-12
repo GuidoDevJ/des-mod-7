@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "module": "CommonJS",
+    "target": "ESNext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "strictNullChecks": false,
+"allowSyntheticDefaultImports": true,
+"outDir": "back-dist"
+  },
+  "includes": ["./back-src/**/*.ts",
+  "./front-src/**/*.ts"]
+}
