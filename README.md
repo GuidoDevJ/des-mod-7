@@ -18,7 +18,7 @@
 * La pagina puede ser mejorada en varios aspectos, los cuales estoy trabajando, pero actualmente cumple los objetivos planteados.
 * Cualquier sugerencia es aceptada como una critica sumamente constructiva.
 ***
-##Versiones
+## Versiones
 *Version 1.0.1: Presenta fallos en ocasiones en la carga de los pets cercanos
     -La carga de datos suele ser lenta.
     -Faltan efectos en los botones.
