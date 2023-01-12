@@ -206,7 +206,7 @@ app.delete("/deletePetDb/:id",validate,async(req,res)=>{
     }
 })
 // Obtener todos los pets de una determinada zona
-app.get("/pets-cerca-de",async(req,res)=>{
+app.get("/pets-cerca-de",validate,async(req,res)=>{
     const lat = req.query.lat;
     const lng = req.query.lng;
     try {
