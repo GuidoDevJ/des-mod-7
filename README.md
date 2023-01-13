@@ -5,7 +5,7 @@
 [Pet](https://des-k648.onrender.com)
 ***
 ## Link a Api de Postman
-[Postman]()
+[Postman](https://documenter.getpostman.com/view/19071215/2s8ZDR9RvM)
 ***
 ## Tecnologias Utilizadas
 * Javascript con Typescript
